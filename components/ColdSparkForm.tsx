@@ -298,7 +298,7 @@ export default function ColdSparkForm() {
                 }`}
               >
                 <div className="font-semibold mb-1">
-                  {r.original.name} @ {r.original.company}
+                  {r.original.name ?? "(no name)"} @ {r.original.company}
                   {r.error && (
                     <span className="ml-2 text-red-600 font-normal">
                       Error: {r.error}

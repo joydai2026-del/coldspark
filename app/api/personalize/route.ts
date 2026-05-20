@@ -23,7 +23,17 @@ function sanitizeErrorMessage(err: unknown): string {
   const msg = err instanceof Error ? err.message : String(err);
   if (msg.startsWith("SSRF_BLOCKED")) return "Blocked URL (SSRF guard)";
   if (msg.startsWith("HTTP ")) return msg; // safe to surface HTTP status
-  if (msg.includes("API") || msg.includes("anthropic") || msg.includes("sk-")) {
+  // Anthropic SDK throws AuthenticationError with status 401; message contains
+  // "authentication_error" or "invalid x-api-key" — none match the original
+  // "API"/"anthropic"/"sk-" checks, so we also cover HTTP 4xx/5xx from the provider.
+  if (
+    msg.includes("API") ||
+    msg.includes("anthropic") ||
+    msg.includes("sk-") ||
+    msg.includes("authentication") ||
+    msg.includes("x-api-key") ||
+    /^\d{3} \{/.test(msg) // Anthropic SDK format: "401 {...}"
+  ) {
     return "AI provider error";
   }
   // Generic fallback for anything else
