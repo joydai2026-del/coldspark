@@ -18,8 +18,28 @@ function csvSafe(value: string): string {
   return value;
 }
 
+function sanitizeErrorMessage(err: unknown): string {
+  // Never leak raw internal error messages (provider details, file paths, etc.)
+  const msg = err instanceof Error ? err.message : String(err);
+  if (msg.startsWith("SSRF_BLOCKED")) return "Blocked URL (SSRF guard)";
+  if (msg.startsWith("HTTP ")) return msg; // safe to surface HTTP status
+  if (msg.includes("API") || msg.includes("anthropic") || msg.includes("sk-")) {
+    return "AI provider error";
+  }
+  // Generic fallback for anything else
+  return "Processing error";
+}
+
 export async function POST(req: NextRequest) {
-  const body: RequestBody = await req.json();
+  let body: RequestBody;
+  try {
+    body = await req.json();
+  } catch {
+    return new Response(JSON.stringify({ error: "Invalid JSON body" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
   const { leads, template } = body;
 
   if (!leads || !Array.isArray(leads) || leads.length === 0) {
@@ -43,6 +63,40 @@ export async function POST(req: NextRequest) {
     });
   }
 
+  if (template.length > 10_000) {
+    return new Response(JSON.stringify({ error: "Template too long (max 10,000 chars)" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  // Validate each lead has required fields with sane lengths
+  for (const lead of leads) {
+    if (!lead.company || typeof lead.company !== "string") {
+      return new Response(JSON.stringify({ error: "Each lead must have a 'company' field" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    if (lead.url && typeof lead.url === "string") {
+      // Validate URL scheme server-side (blocks file://, javascript:, etc.)
+      try {
+        const parsed = new URL(lead.url);
+        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+          return new Response(JSON.stringify({ error: `Invalid URL scheme for ${lead.company}: only http/https allowed` }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" },
+          });
+        }
+      } catch {
+        return new Response(JSON.stringify({ error: `Invalid URL for ${lead.company}` }), {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+    }
+  }
+
   const encoder = new TextEncoder();
 
   const stream = new ReadableStream({
@@ -61,7 +115,7 @@ export async function POST(req: NextRequest) {
               if (msg.startsWith("SSRF_BLOCKED")) {
                 const line = JSON.stringify({
                   idx: i,
-                  error: `Blocked URL (SSRF guard): ${lead.url}`,
+                  error: "Blocked URL (SSRF guard)",
                   original: lead,
                 });
                 controller.enqueue(encoder.encode(line + "\n"));
@@ -88,10 +142,9 @@ export async function POST(req: NextRequest) {
           });
           controller.enqueue(encoder.encode(line + "\n"));
         } catch (err) {
-          const errMsg = err instanceof Error ? err.message : String(err);
           const line = JSON.stringify({
             idx: i,
-            error: errMsg,
+            error: sanitizeErrorMessage(err),
             original: lead,
           });
           controller.enqueue(encoder.encode(line + "\n"));

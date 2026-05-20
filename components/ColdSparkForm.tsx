@@ -134,10 +134,27 @@ export default function ColdSparkForm() {
     }
   }
 
+  // CSV injection guard: prefix formula-starting cells with single quote
+  function csvSafeCell(value: string): string {
+    if (typeof value === "string" && /^[=+\-@\t]/.test(value)) {
+      return "'" + value;
+    }
+    return value;
+  }
+
+  function csvSafeRow(row: Record<string, string>): Record<string, string> {
+    const safe: Record<string, string> = {};
+    for (const [k, v] of Object.entries(row)) {
+      safe[k] = typeof v === "string" ? csvSafeCell(v) : v;
+    }
+    return safe;
+  }
+
   function downloadCsv() {
     if (results.length === 0) return;
 
     // Build rows: original columns + filled placeholder columns
+    // Apply CSV injection guard to ALL cells (original + filled + error + scraped)
     const rows = results.map((r) => {
       const base = { ...r.original };
       if (r.filled) {
@@ -147,7 +164,7 @@ export default function ColdSparkForm() {
       }
       if (r.error) base["error"] = r.error;
       base["scraped"] = r.scraped ? "yes" : "no";
-      return base;
+      return csvSafeRow(base);
     });
 
     const csv = Papa.unparse(rows);
