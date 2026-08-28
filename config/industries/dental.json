@@ -1,0 +1,60 @@
+{
+  "id": "dental",
+  "label": "Private dental and orthodontic practices",
+  "discovery": {
+    "queries": ["dental practice", "dentist office", "orthodontics"],
+    "location": "SAMPLE METRO AREA",
+    "limit": 25
+  },
+  "icp": {
+    "blockTokens": ["dso"],
+    "blockPhrases": ["aspen dental", "smile brands", "heartland dental"],
+    "minRating": 4.3,
+    "minReviews": 25
+  },
+  "verification": {
+    "failClosed": true,
+    "riskyPolicy": "drop",
+    "droppedDomainTtlDays": 120
+  },
+  "personalization": {
+    "placeholders": ["greeting", "company", "company_hook", "value_prop"],
+    "brief": "Read the practice's own site. Name one specific service or policy they publish. Do not mention patients by any detail, and never imply knowledge of anyone's care."
+  },
+  "scoring": {
+    "weights": {
+      "hasEmail": 20,
+      "trackOwner": 20,
+      "trackGeneral": 10,
+      "hasPhone": 10,
+      "hasWebsite": 5,
+      "ratingAbove": { "4.5": 10, "4.8": 10 },
+      "reviewsAbove": { "100": 10, "200": 5 }
+    },
+    "qualifyThreshold": 50
+  },
+  "sequence": {
+    "timezone": "America/New_York",
+    "sendWindowHours": [10, 16],
+    "sendDays": [1, 2, 3, 4],
+    "sendCapPerRun": 15,
+    "steps": [
+      {
+        "id": "intro",
+        "delayBusinessDays": 0,
+        "subject": "{company}'s front desk",
+        "body": "{greeting},\n\nI was reading about {company} and noticed {company_hook}.\n\nWe help practices {value_prop}.\n\nIs that worth a short call?\n\nJJ"
+      },
+      {
+        "id": "close",
+        "delayBusinessDays": 4,
+        "subject": "Re: {company}'s front desk",
+        "body": "{greeting},\n\nClosing the loop so I am not filling your inbox. Reply here any time and it comes straight back to me.\n\nJJ"
+      }
+    ]
+  },
+  "handoff": {
+    "destination": "practice owner call queue",
+    "calendarLink": "https://calendar.example/sample-booking-link"
+  }
+}

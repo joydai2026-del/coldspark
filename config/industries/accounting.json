@@ -1,0 +1,72 @@
+{
+  "id": "accounting",
+  "label": "Independent accounting and bookkeeping firms",
+  "discovery": {
+    "queries": ["accounting firm", "bookkeeping service", "tax preparation"],
+    "location": "SAMPLE METRO AREA",
+    "limit": 25
+  },
+  "icp": {
+    "blockTokens": ["ey", "kpmg", "pwc", "bdo", "rsm"],
+    "blockPhrases": ["deloitte", "grant thornton", "h&r block", "jackson hewitt", "grantham national"],
+    "minRating": 4.0,
+    "minReviews": 10
+  },
+  "verification": {
+    "failClosed": true,
+    "riskyPolicy": "manual_review",
+    "droppedDomainTtlDays": 90
+  },
+  "personalization": {
+    "placeholders": ["greeting", "company", "company_hook", "value_prop", "proof_point"],
+    "brief": "Read the firm's own site. Name one specific thing they do or say, in their words, that a stranger could not have guessed. Never flatter, never invent a metric."
+  },
+  "scoring": {
+    "weights": {
+      "hasEmail": 20,
+      "trackOwner": 15,
+      "trackGeneral": 5,
+      "hasPhone": 10,
+      "hasWebsite": 10,
+      "ratingAbove": { "4.0": 10, "4.5": 5 },
+      "reviewsAbove": { "50": 10, "100": 5 }
+    },
+    "qualifyThreshold": 40
+  },
+  "sequence": {
+    "timezone": "America/New_York",
+    "sendWindowHours": [9, 17],
+    "sendDays": [1, 2, 3, 4, 5],
+    "sendCapPerRun": 40,
+    "steps": [
+      {
+        "id": "intro",
+        "delayBusinessDays": 0,
+        "subject": "A question about {company}'s month-end close",
+        "body": "{greeting},\n\nI came across {company} and noticed {company_hook}.\n\nWe help firms {value_prop}. {proof_point}.\n\nWorth fifteen minutes to see whether it applies to you?\n\nJJ"
+      },
+      {
+        "id": "value",
+        "delayBusinessDays": 3,
+        "subject": "Re: A question about {company}'s month-end close",
+        "body": "{greeting},\n\nOne concrete version of what I meant: the reconciliation and categorization pass most firms run by hand can be prepared before anyone opens the file.\n\nStill happy to walk you through it in fifteen minutes.\n\nJJ"
+      },
+      {
+        "id": "proof",
+        "delayBusinessDays": 4,
+        "subject": "Re: A question about {company}'s month-end close",
+        "body": "{greeting},\n\nLast useful thing I can send: {proof_point}. If that is not where {company} loses time, ignore me and I will not keep guessing.\n\nJJ"
+      },
+      {
+        "id": "close",
+        "delayBusinessDays": 5,
+        "subject": "Closing the loop, {company}",
+        "body": "{greeting},\n\nI will stop here so I am not cluttering your inbox. If the timing changes, reply to this thread and it lands straight back with me.\n\nJJ"
+      }
+    ]
+  },
+  "handoff": {
+    "destination": "discovery call queue",
+    "calendarLink": "https://calendar.example/sample-booking-link"
+  }
+}

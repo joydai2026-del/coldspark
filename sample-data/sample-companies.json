@@ -1,0 +1,217 @@
+[
+  {
+    "companyName": "Northgate Books",
+    "website": "https://northgate-books.example",
+    "domain": "northgate-books.example",
+    "phone": "555-0100",
+    "address": "SAMPLE ADDRESS, Anytown",
+    "rating": 4.7,
+    "reviewCount": 132,
+    "category": "accounting bookkeeping",
+    "tags": ["accounting", "bookkeeping"],
+    "email": "info@northgate-books.example",
+    "siteSummary": "Northgate Books runs monthly close and payroll for restaurant groups, and says on its own site that it still does the bank reconciliation by hand. The team is four people.",
+    "contact": {
+      "email": "dana.reyes@northgate-books.example",
+      "firstName": "Dana",
+      "lastName": "Reyes",
+      "title": "Managing Partner"
+    },
+    "verdicts": {
+      "dana.reyes@northgate-books.example": "valid",
+      "info@northgate-books.example": "valid"
+    }
+  },
+  {
+    "companyName": "Harborlight Tax Group",
+    "website": "https://harborlight-tax.example",
+    "domain": "harborlight-tax.example",
+    "phone": "555-0101",
+    "rating": 4.4,
+    "reviewCount": 88,
+    "category": "accounting tax",
+    "tags": ["accounting", "tax"],
+    "email": "hello@harborlight-tax.example",
+    "siteSummary": "Harborlight Tax Group files returns for owner-operated construction firms and advertises a January to April crunch season with temporary staff.",
+    "contact": {
+      "email": "p.okafor@harborlight-tax.example",
+      "firstName": "Priya",
+      "lastName": "Okafor",
+      "title": "Director of Tax"
+    },
+    "verdicts": {
+      "p.okafor@harborlight-tax.example": "invalid",
+      "hello@harborlight-tax.example": "valid"
+    }
+  },
+  {
+    "companyName": "Quill CPA Studio",
+    "website": "https://quill-cpa.example",
+    "domain": "quill-cpa.example",
+    "rating": 4.9,
+    "reviewCount": 61,
+    "category": "accounting cpa",
+    "tags": ["accounting", "cpa"],
+    "siteSummary": "Quill CPA Studio advises early-stage software companies on R&D credits.",
+    "contact": {
+      "email": "founder@quill-cpa.example",
+      "firstName": "Marcus",
+      "lastName": "Vela",
+      "title": "Founder"
+    },
+    "verdicts": {
+      "founder@quill-cpa.example": "invalid"
+    }
+  },
+  {
+    "companyName": "Maple Ledger Associates",
+    "website": "https://maple-ledger.example",
+    "domain": "maple-ledger.example",
+    "phone": "555-0103",
+    "rating": 4.2,
+    "reviewCount": 54,
+    "category": "accounting bookkeeping",
+    "tags": ["accounting", "bookkeeping"],
+    "email": "contact@maple-ledger.example",
+    "siteSummary": "Maple Ledger Associates handles bookkeeping and sales tax filings for retail shops across three states.",
+    "contact": null,
+    "verdicts": {
+      "contact@maple-ledger.example": "valid"
+    }
+  },
+  {
+    "companyName": "Bayonne Tax Services",
+    "website": "https://bayonne-tax.example",
+    "domain": "bayonne-tax.example",
+    "phone": "555-0104",
+    "rating": 4.5,
+    "reviewCount": 77,
+    "category": "accounting tax",
+    "tags": ["accounting", "tax"],
+    "email": "office@bayonne-tax.example",
+    "siteSummary": "Bayonne Tax Services prepares individual and small business returns and keeps Saturday hours through the spring.",
+    "contact": null,
+    "verdicts": {
+      "office@bayonne-tax.example": "valid"
+    }
+  },
+  {
+    "companyName": "Grantham National Tax Partners",
+    "website": "https://grantham-national.example",
+    "domain": "grantham-national.example",
+    "rating": 4.1,
+    "reviewCount": 900,
+    "category": "accounting advisory",
+    "tags": ["accounting"],
+    "email": "info@grantham-national.example",
+    "siteSummary": "An invented national chain, present only so the blocklist has something to reject.",
+    "contact": null,
+    "verdicts": {
+      "info@grantham-national.example": "valid"
+    }
+  },
+  {
+    "companyName": "Summit Books and Payroll",
+    "website": "https://summit-books.example",
+    "domain": "summit-books.example",
+    "rating": 4.6,
+    "reviewCount": 40,
+    "category": "accounting payroll",
+    "tags": ["accounting", "payroll"],
+    "email": "team@summit-books.example",
+    "siteSummary": "Summit Books and Payroll runs payroll for seasonal landscaping businesses.",
+    "contact": null,
+    "verdicts": {
+      "team@summit-books.example": "risky"
+    }
+  },
+  {
+    "companyName": "Cedar Close CPA",
+    "website": "https://cedar-close-cpa.example",
+    "domain": "cedar-close-cpa.example",
+    "phone": "555-0107",
+    "rating": 4.3,
+    "reviewCount": 51,
+    "category": "accounting cpa",
+    "tags": ["accounting", "cpa"],
+    "email": "hello@cedar-close-cpa.example",
+    "siteSummary": "Cedar Close CPA specializes in month-end close for medical practices and publishes a close checklist on its site.",
+    "contact": {
+      "email": "l.tran@cedar-close-cpa.example",
+      "firstName": "Lena",
+      "lastName": "Tran",
+      "title": ""
+    },
+    "verdicts": {
+      "l.tran@cedar-close-cpa.example": "valid",
+      "hello@cedar-close-cpa.example": "valid"
+    }
+  },
+  {
+    "companyName": "Riverbend Tax Corner",
+    "website": "https://riverbend-tax.example",
+    "domain": "riverbend-tax.example",
+    "rating": 3.1,
+    "reviewCount": 6,
+    "category": "accounting tax",
+    "tags": ["accounting", "tax"],
+    "email": "info@riverbend-tax.example",
+    "siteSummary": "A two-person tax preparation storefront.",
+    "contact": null,
+    "verdicts": {
+      "info@riverbend-tax.example": "valid"
+    }
+  },
+  {
+    "companyName": "Ironwood Accounting Co-op",
+    "website": "https://ironwood-accounting.example",
+    "domain": "ironwood-accounting.example",
+    "phone": "555-0109",
+    "rating": 4.8,
+    "reviewCount": 120,
+    "category": "accounting bookkeeping",
+    "tags": ["accounting", "bookkeeping"],
+    "email": "desk@ironwood-accounting.example",
+    "contact": null,
+    "verdicts": {
+      "desk@ironwood-accounting.example": "valid"
+    }
+  },
+  {
+    "companyName": "Brightmile Family Dental",
+    "website": "https://brightmile-dental.example",
+    "domain": "brightmile-dental.example",
+    "phone": "555-0110",
+    "rating": 4.8,
+    "reviewCount": 210,
+    "category": "dental practice",
+    "tags": ["dental", "dentist"],
+    "email": "front@brightmile-dental.example",
+    "siteSummary": "Brightmile Family Dental takes same-week appointments and says its front desk still confirms every visit by phone.",
+    "contact": {
+      "email": "j.hollis@brightmile-dental.example",
+      "firstName": "Jordan",
+      "lastName": "Hollis",
+      "title": "Practice Owner"
+    },
+    "verdicts": {
+      "j.hollis@brightmile-dental.example": "valid",
+      "front@brightmile-dental.example": "valid"
+    }
+  },
+  {
+    "companyName": "Oakframe Orthodontics",
+    "website": "https://oakframe-ortho.example",
+    "domain": "oakframe-ortho.example",
+    "rating": 4.6,
+    "reviewCount": 95,
+    "category": "dental orthodontics",
+    "tags": ["dental", "dentist", "orthodontics"],
+    "email": "hello@oakframe-ortho.example",
+    "siteSummary": "Oakframe Orthodontics runs two locations and publishes its own recall reminder policy.",
+    "contact": null,
+    "verdicts": {
+      "hello@oakframe-ortho.example": "valid"
+    }
+  }
+]

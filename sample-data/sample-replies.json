@@ -1,0 +1,30 @@
+[
+  {
+    "domain": "northgate-books.example",
+    "subject": "Re: A question about your month-end close",
+    "body": "This is interesting, actually. We do spend a full day on reconciliation every month. Happy to chat next week if you have a time.\n\nDana\n\nOn Mon, 2 Mar 2026, Sender wrote:\n> original message quoted here\n",
+    "receivedAt": "2026-03-03T14:12:00.000Z"
+  },
+  {
+    "domain": "harborlight-tax.example",
+    "subject": "Automatic reply: A question about your month-end close",
+    "body": "Thank you for your email. I am out of the office with limited access to email and will return on March 16. For urgent matters please contact the front desk.",
+    "receivedAt": "2026-03-02T17:00:00.000Z",
+    "headers": {
+      "Auto-Submitted": "auto-replied",
+      "X-Autoreply": "yes"
+    }
+  },
+  {
+    "domain": "maple-ledger.example",
+    "subject": "Re: A question about your month-end close",
+    "body": "Not interested, we already have someone who handles this. Thanks anyway.",
+    "receivedAt": "2026-03-02T18:40:00.000Z"
+  },
+  {
+    "domain": "bayonne-tax.example",
+    "subject": "Re: A question about your month-end close",
+    "body": "Please remove me from this list and stop emailing.",
+    "receivedAt": "2026-03-02T19:05:00.000Z"
+  }
+]
