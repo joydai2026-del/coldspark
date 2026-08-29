@@ -5,8 +5,8 @@ its own schedule, tracks its own email threads, and stops the moment a human
 answers. Every vertical is a config file, not a code change.
 
 ```bash
-git clone https://github.com/joydai2026-del/coldspark-next.git
-cd coldspark-next
+git clone https://github.com/joydai2026-del/coldspark.git
+cd coldspark
 npm install
 npm run demo          # full pipeline over fabricated sample data, sends nothing
 ```
