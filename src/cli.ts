@@ -62,7 +62,7 @@ export function parseArgs(argv: string[]): Args {
   return args;
 }
 
-const HELP = `coldspark-next
+const HELP = `coldspark
 
   coldspark run --industry <name> --dry-run [--state dir] [--out report.json] [--json]
   coldspark industries

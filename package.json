@@ -1,5 +1,5 @@
 {
-  "name": "coldspark-next",
+  "name": "coldspark",
   "version": "0.1.0",
   "description": "A config-driven cold outreach engine: discover, enrich, verify, personalize, sequence, track replies, follow up, hand off.",
   "type": "module",
